@@ -96,6 +96,11 @@ module Xcodeproj
         testables.add_element(testable.xml_element)
       end
 
+      # Delete all testable
+      def clear_testable()
+        @xml_element.delete_element('Testables')
+      end
+
       # @return [Array<MacroExpansion>]
       #         The list of MacroExpansion bound with this TestAction
       #
