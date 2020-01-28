@@ -85,7 +85,7 @@ module Xcodeproj
       end
 
       # Delete all testable
-      def clear_testable()
+      def delete_testable
         @xml_element.delete_element('Testables')
       end
 
