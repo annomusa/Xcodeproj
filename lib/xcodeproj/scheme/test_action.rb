@@ -140,6 +140,17 @@ module Xcodeproj
         arguments
       end
 
+      # @return [BuildableReference] 
+      #         Return buildable reference inside CodeCoverageTargets node
+      #
+      def code_coverage_targets
+        return [] unless @xml_element.elements['CodeCoverageTargets']
+
+        @xml_element.elements['CodeCoverageTargets'].get_elements('BuildableReference').map do |node|
+          BuildableReference.new(node)
+        end
+      end
+
       #-------------------------------------------------------------------------#
 
       class TestableReference < XMLElementWrapper
