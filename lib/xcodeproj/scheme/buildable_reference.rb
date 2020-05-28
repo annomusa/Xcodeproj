@@ -27,6 +27,13 @@ module Xcodeproj
         @xml_element.attributes['BlueprintName']
       end
 
+      # @param [String] value
+      #        Set the name of the target when building this Buildable Reference
+      #
+      def target_name=(value)
+        @xml_element.attributes['BlueprintName'] = value
+      end
+
       # @return [String]
       #         The Unique Identifier of the target (target.uuid) this Buildable Reference points to.
       #
@@ -38,12 +45,26 @@ module Xcodeproj
         @xml_element.attributes['BlueprintIdentifier']
       end
 
+      # @param [String] value
+      #        Set the unique identifier of the target when building this Buildable Reference
+      #
+      def target_uuid=(value)
+        @xml_element.attributes['BlueprintIdentifier'] = value
+      end
+
       # @return [String]
       #         The string representing the container of that target.
       #         Typically in the form of 'container:xxxx.xcodeproj'
       #
       def target_referenced_container
         @xml_element.attributes['ReferencedContainer']
+      end
+
+      # @param [String] value
+      #        Set container identifier of the target when building this Buildable Reference
+      #
+      def target_referenced_container=(value)
+        @xml_element.attributes['ReferencedContainer'] = value
       end
 
       # Set the BlueprintIdentifier (target.uuid), BlueprintName (target.name)
