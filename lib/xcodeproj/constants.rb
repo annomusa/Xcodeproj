@@ -4,19 +4,19 @@ module Xcodeproj
   module Constants
     # @return [String] The last known iOS SDK (stable).
     #
-    LAST_KNOWN_IOS_SDK = '12.2'
+    LAST_KNOWN_IOS_SDK = '14.0'
 
     # @return [String] The last known OS X SDK (stable).
     #
-    LAST_KNOWN_OSX_SDK = '10.14'
+    LAST_KNOWN_OSX_SDK = '10.15'
 
     # @return [String] The last known tvOS SDK (stable).
     #
-    LAST_KNOWN_TVOS_SDK = '12.2'
+    LAST_KNOWN_TVOS_SDK = '14.0'
 
     # @return [String] The last known watchOS SDK (stable).
     #
-    LAST_KNOWN_WATCHOS_SDK = '5.2'
+    LAST_KNOWN_WATCHOS_SDK = '7.0'
 
     # @return [String] The last known archive version to Xcodeproj.
     #
@@ -32,7 +32,7 @@ module Xcodeproj
 
     # @return [String] The last known object version to Xcodeproj.
     #
-    LAST_KNOWN_OBJECT_VERSION = 52
+    LAST_KNOWN_OBJECT_VERSION = 54
 
     # @return [String] The last known object version to Xcodeproj.
     #
@@ -93,12 +93,14 @@ module Xcodeproj
       'app'          => 'wrapper.application',
       'appex'        => 'wrapper.app-extension',
       'bundle'       => 'wrapper.plug-in',
+      'cpp'          => 'sourcecode.cpp.cpp',
       'dylib'        => 'compiled.mach-o.dylib',
       'entitlements' => 'text.plist.entitlements',
       'framework'    => 'wrapper.framework',
       'gif'          => 'image.gif',
       'gpx'          => 'text.xml',
       'h'            => 'sourcecode.c.h',
+      'hpp'          => 'sourcecode.cpp.h',
       'm'            => 'sourcecode.c.objc',
       'markdown'     => 'text',
       'mdimporter'   => 'wrapper.cfbundle',
@@ -126,6 +128,8 @@ module Xcodeproj
     # @return [Hash] The compatibility version string for different object versions.
     #
     COMPATIBILITY_VERSION_BY_OBJECT_VERSION = {
+      54 => 'Xcode 12.0',
+      53 => 'Xcode 11.4',
       52 => 'Xcode 11.0',
       51 => 'Xcode 10.0',
       50 => 'Xcode 9.3',
@@ -138,46 +142,48 @@ module Xcodeproj
     # @return [Hash] The uniform type identifier of various product types.
     #
     PRODUCT_TYPE_UTI = {
-      :application          => 'com.apple.product-type.application',
-      :framework            => 'com.apple.product-type.framework',
-      :dynamic_library      => 'com.apple.product-type.library.dynamic',
-      :static_library       => 'com.apple.product-type.library.static',
-      :bundle               => 'com.apple.product-type.bundle',
-      :octest_bundle        => 'com.apple.product-type.bundle',
-      :unit_test_bundle     => 'com.apple.product-type.bundle.unit-test',
-      :ui_test_bundle       => 'com.apple.product-type.bundle.ui-testing',
-      :app_extension        => 'com.apple.product-type.app-extension',
-      :command_line_tool    => 'com.apple.product-type.tool',
-      :watch_app            => 'com.apple.product-type.application.watchapp',
-      :watch2_app           => 'com.apple.product-type.application.watchapp2',
-      :watch2_app_container => 'com.apple.product-type.application.watchapp2-container',
-      :watch_extension      => 'com.apple.product-type.watchkit-extension',
-      :watch2_extension     => 'com.apple.product-type.watchkit2-extension',
-      :tv_extension         => 'com.apple.product-type.tv-app-extension',
-      :messages_application => 'com.apple.product-type.application.messages',
-      :messages_extension   => 'com.apple.product-type.app-extension.messages',
-      :sticker_pack         => 'com.apple.product-type.app-extension.messages-sticker-pack',
-      :xpc_service          => 'com.apple.product-type.xpc-service',
+      :application                           => 'com.apple.product-type.application',
+      :application_on_demand_install_capable => 'com.apple.product-type.application.on-demand-install-capable',
+      :framework                             => 'com.apple.product-type.framework',
+      :dynamic_library                       => 'com.apple.product-type.library.dynamic',
+      :static_library                        => 'com.apple.product-type.library.static',
+      :bundle                                => 'com.apple.product-type.bundle',
+      :octest_bundle                         => 'com.apple.product-type.bundle',
+      :unit_test_bundle                      => 'com.apple.product-type.bundle.unit-test',
+      :ui_test_bundle                        => 'com.apple.product-type.bundle.ui-testing',
+      :app_extension                         => 'com.apple.product-type.app-extension',
+      :command_line_tool                     => 'com.apple.product-type.tool',
+      :watch_app                             => 'com.apple.product-type.application.watchapp',
+      :watch2_app                            => 'com.apple.product-type.application.watchapp2',
+      :watch2_app_container                  => 'com.apple.product-type.application.watchapp2-container',
+      :watch_extension                       => 'com.apple.product-type.watchkit-extension',
+      :watch2_extension                      => 'com.apple.product-type.watchkit2-extension',
+      :tv_extension                          => 'com.apple.product-type.tv-app-extension',
+      :messages_application                  => 'com.apple.product-type.application.messages',
+      :messages_extension                    => 'com.apple.product-type.app-extension.messages',
+      :sticker_pack                          => 'com.apple.product-type.app-extension.messages-sticker-pack',
+      :xpc_service                           => 'com.apple.product-type.xpc-service',
     }.freeze
 
     # @return [Hash] The extensions or the various product UTIs.
     #
     PRODUCT_UTI_EXTENSIONS = {
-      :application          => 'app',
-      :framework            => 'framework',
-      :dynamic_library      => 'dylib',
-      :static_library       => 'a',
-      :bundle               => 'bundle',
-      :octest_bundle        => 'octest',
-      :unit_test_bundle     => 'xctest',
-      :ui_test_bundle       => 'xctest',
-      :app_extension        => 'appex',
-      :messages_application => 'app',
-      :messages_extension   => 'appex',
-      :sticker_pack         => 'appex',
-      :watch2_extension     => 'appex',
-      :watch2_app           => 'app',
-      :watch2_app_container => 'app',
+      :application                           => 'app',
+      :application_on_demand_install_capable => 'app',
+      :framework                             => 'framework',
+      :dynamic_library                       => 'dylib',
+      :static_library                        => 'a',
+      :bundle                                => 'bundle',
+      :octest_bundle                         => 'octest',
+      :unit_test_bundle                      => 'xctest',
+      :ui_test_bundle                        => 'xctest',
+      :app_extension                         => 'appex',
+      :messages_application                  => 'app',
+      :messages_extension                    => 'appex',
+      :sticker_pack                          => 'appex',
+      :watch2_extension                      => 'appex',
+      :watch2_app                            => 'app',
+      :watch2_app_container                  => 'app',
     }.freeze
 
     # @return [Hash] The common build settings grouped by platform, and build
@@ -198,11 +204,9 @@ module Xcodeproj
       }.freeze,
       [:ios] => {
         'SDKROOT'                           => 'iphoneos',
-        'CODE_SIGN_IDENTITY'                => 'iPhone Developer',
       }.freeze,
       [:osx] => {
         'SDKROOT'                           => 'macosx',
-        'CODE_SIGN_IDENTITY'                => '-',
       }.freeze,
       [:tvos] => {
         'SDKROOT'                           => 'appletvos',
@@ -251,7 +255,6 @@ module Xcodeproj
       [:debug, :static_library, :swift] => {
       }.freeze,
       [:framework] => {
-        'CODE_SIGN_IDENTITY' => '',
         'CURRENT_PROJECT_VERSION'           => '1',
         'DEFINES_MODULE'                    => 'YES',
         'DYLIB_COMPATIBILITY_VERSION'       => '1',
@@ -269,7 +272,6 @@ module Xcodeproj
       }.freeze,
       [:osx, :framework] => {
         'COMBINE_HIDPI_IMAGES'              => 'YES',
-        'FRAMEWORK_VERSION'                 => 'A',
         'LD_RUNPATH_SEARCH_PATHS'           => '$(inherited) @executable_path/../Frameworks @loader_path/Frameworks',
       }.freeze,
       [:watchos, :framework] => {
@@ -311,6 +313,7 @@ module Xcodeproj
       }.freeze,
       [:application] => {
         'ASSETCATALOG_COMPILER_APPICON_NAME' => 'AppIcon',
+        'ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME'  => 'AccentColor',
       }.freeze,
       [:ios, :application] => {
         'LD_RUNPATH_SEARCH_PATHS'           => '$(inherited) @executable_path/Frameworks',
@@ -326,9 +329,11 @@ module Xcodeproj
       }.freeze,
       [:tvos, :application] => {
         'ASSETCATALOG_COMPILER_APPICON_NAME' => 'App Icon & Top Shelf Image',
-        'ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME' => 'LaunchImage',
         'LD_RUNPATH_SEARCH_PATHS'           => '$(inherited) @executable_path/Frameworks',
         'TARGETED_DEVICE_FAMILY'            => '3',
+      }.freeze,
+      [:tvos, :application, :swift] => {
+        'ENABLE_PREVIEWS'                                 => 'YES',
       }.freeze,
       [:watchos, :application, :swift] => {
         'ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES' => 'YES',
@@ -375,6 +380,7 @@ module Xcodeproj
         'CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF'    => 'YES',
         'CLANG_WARN_OBJC_LITERAL_CONVERSION'      => 'YES',
         'CLANG_WARN_OBJC_ROOT_CLASS'              => 'YES_ERROR',
+        'CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER' => 'YES',
         'CLANG_WARN_RANGE_LOOP_ANALYSIS'          => 'YES',
         'CLANG_WARN_STRICT_PROTOTYPES'            => 'YES',
         'CLANG_WARN_SUSPICIOUS_MOVE'              => 'YES',

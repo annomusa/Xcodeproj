@@ -11,6 +11,111 @@
 * None.  
 
 
+## 1.19.0 (2020-10-09)
+
+##### Enhancements
+
+* Add support of c++ files (`hpp` and `cpp`) in `PBXFileReference:set_last_known_file_type`.  
+  [romanmikhailov](https://github.com/romanmikhailov)
+  [#783](https://github.com/CocoaPods/Xcodeproj/issues/783)
+
+* Add support of dependency analysis option in `PBXShellScriptBuildPhase:always_out_of_date`.  
+  [lemonspike](https://github.com/LemonSpike)
+  [#785](https://github.com/CocoaPods/Xcodeproj/issues/785)
+
+* Update default build settings for Xcode 12  
+  [Samuel Giddins](https://github.com/segiddins), [Eric Amorde](https://github.com/amorde)
+  [#767](https://github.com/CocoaPods/Xcodeproj/pull/767)
+
+##### Bug Fixes
+
+* None.  
+
+
+## 1.18.0 (2020-08-12)
+
+##### Enhancements
+
+* Add `:application_on_demand_install_capable` product type to support App Clips.  
+  [Igor Makarov](https://github.com/igor-makarov)
+  [#768](https://github.com/CocoaPods/Xcodeproj/pull/768)
+
+##### Bug Fixes
+
+* None.  
+
+
+## 1.17.1 (2020-07-17)
+
+##### Enhancements
+
+* Bump mininum Nanaimo gem version for Ruby 2.7 support.  
+  [Dimitris Koutsogiorgas](https://github.com/dnkoutso)
+  [#776](https://github.com/CocoaPods/Xcodeproj/pull/776)
+
+##### Bug Fixes
+
+* None.  
+
+
+## 1.17.0 (2020-06-23)
+
+##### Enhancements
+
+* Add Xcode 12 object version  
+  [Dimitris Koutsogiorgas](https://github.com/dnkoutso)
+  [#764](https://github.com/CocoaPods/Xcodeproj/pull/764)
+
+* target_dependency: Add target proxy to `to_tree_hash`.
+  [Ben Yohay](https://github.com/byohay)
+
+##### Bug Fixes
+
+* Prevent duplicate project references from being added to the generated workspace.  
+  [Sean Reinhardt](https://github.com/seanreinhardtapps)
+  [#8481](https://github.com/CocoaPods/CocoaPods/issues/8481)
+  
+* Fix small bug where product references have a trailing dot  
+  [nickgravelyn](https://github.com/nickgravelyn)
+  [#757](https://github.com/CocoaPods/Xcodeproj/pull/757)
+
+
+## 1.16.0 (2020-04-10)
+
+##### Enhancements
+
+* Add Xcode 11.4 object version.  
+  [Dimitris Koutsogiorgas](https://github.com/dnkoutso)
+  [#744](https://github.com/CocoaPods/Xcodeproj/issues/744)
+
+* Add new APIs to set testables or entries in schemes.  
+  [Dimitris Koutsogiorgas](https://github.com/dnkoutso)
+  [#707](https://github.com/CocoaPods/Xcodeproj/pull/707)
+
+* Add support for macro expansions to launch actions.  
+  [Eric Amorde](https://github.com/amorde)
+  [#738](https://github.com/CocoaPods/Xcodeproj/pull/738)
+
+##### Bug Fixes
+
+* Handle project_dir_path attribute for project location.  
+  [Paul Beusterien](https://github.com/paulb777)
+  [Andrew](https://github.com/mad-rain)
+  [#739](https://github.com/CocoaPods/Xcodeproj/pull/739)
+
+## 1.15.0 (2020-02-04)
+
+##### Enhancements
+
+* None.  
+
+##### Bug Fixes
+
+* Fix incorrect formatting of build settings with modifiers  
+  [revolter](https://github.com/revolter)
+  [#706](https://github.com/CocoaPods/Xcodeproj/pull/706)
+
+
 ## 1.14.0 (2019-12-14)
 
 ##### Enhancements
@@ -58,10 +163,6 @@
 * Add support for `runOncePerArchitecture` attribute for `PBXBuildRule`.  
   [Alon Karasik](https://github.com/alon-k/)
   [#712](https://github.com/CocoaPods/Xcodeproj/pull/712)
-
-* Fix incorrect formatting of build settings with modifiers  
-  [revolter](https://github.com/revolter)
-  [#706](https://github.com/CocoaPods/CocoaPods/pull/706)
 
 
 ## 1.12.0 (2019-08-02)
