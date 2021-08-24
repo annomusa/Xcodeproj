@@ -167,6 +167,87 @@ module Xcodeproj
         end
       end
 
+      # @return [Array<TestPlanReference>]
+      #         The list of TestPlanReference (test plans) associated with this Test Action
+      #
+      def test_plans
+        return [] unless @xml_element.elements['TestPlans']
+
+        @xml_element.elements['TestPlans'].get_elements('TestPlanReference').map do |node|
+          TestPlanReference.new(node)
+        end
+      end
+
+      # @param [Array<TestPlanReference>] test_plans
+      #         Sets the list of TestPlanReference (test plans) associated with this Test Action
+      #
+      def test_plans=(test_plans)
+        @xml_element.delete_element('TestPlans')
+        test_plans_element = @xml_element.add_element('TestPlans')
+        test_plans.each do |test_plan|
+          test_plans_element.add_element(test_plan.xml_element)
+        end
+        test_plans
+      end
+
+      # @param [TestPlanReference] test_plan
+      #        Add a TestPlanReference (test plan) to this Test Action
+      #
+      def add_test_plan(test_plan)
+        test_plans = @xml_element.elements['TestPlans'] || @xml_element.add_element('TestPlans')
+        test_plans.add_element(test_plan.xml_element)
+      end
+
+      # Delete all testplans
+      def delete_test_plans
+        @xml_element.delete_element('TestPlans')
+      end
+
+      #-------------------------------------------------------------------------#
+
+      class TestPlanReference < XMLElementWrapper
+        # @param [Xcodeproj::Project::Object::AbstractTarget, REXML::Element] target_or_node
+        #        Either the Xcode target to reference,
+        #        or an existing XML 'TestPlanReference' node element to reference,
+        #        or nil to create an new, empty TestPlanReference
+        #
+        # @param [Xcodeproj::Project] the root project to reference from
+        #                             (when nil the project of the target is used)
+        #
+        def initialize(target_or_node = nil, root_project = nil)
+          create_xml_element_with_fallback(target_or_node, 'TestPlanReference')
+        end
+
+        # @return [Bool]
+        #         Whether or not this TestPlanReference (test plan) is default test plan or not
+        #
+        def default?
+          string_to_bool(@xml_element.attributes['default'])
+        end
+
+        # @param [Bool] flag
+        #        Set whether or not this TestPlanReference (test plan) is default test plan or not
+        #
+        def default=(flag)
+          @xml_element.attributes['default'] = bool_to_string(flag)
+        end
+
+        # @return [String]
+        #         The string representing the container of test plan.
+        #         Typically in the form of 'container:xxxx.xctestplan'
+        #
+        def reference_container
+          @xml_element.attributes['reference']
+        end
+
+        # @param [String] value
+        #        Set container identifier of the test plan when building this Test Plan Reference
+        #
+        def reference_container=(value)
+          @xml_element.attributes['reference'] = value
+        end
+      end
+
       #-------------------------------------------------------------------------#
 
       class TestableReference < XMLElementWrapper
