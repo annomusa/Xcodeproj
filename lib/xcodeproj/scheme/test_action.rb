@@ -222,7 +222,10 @@ module Xcodeproj
         #         Whether or not this TestPlanReference (test plan) is default test plan or not
         #
         def default?
-          string_to_bool(@xml_element.attributes['default'])
+          default_attributes = @xml_element.attributes['default']
+          return false unless %w(YES NO).include?(default_attributes)
+
+          string_to_bool(default_attributes)
         end
 
         # @param [Bool] flag
